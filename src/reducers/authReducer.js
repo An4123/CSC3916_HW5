@@ -6,24 +6,26 @@ var initalState = {
     username: localStorage.getItem('username') ? localStorage.getItem('username') : ''      // is there a username, else false
 }
 
-export default (state = initalState, action) => {
+const authReducer = (state = initalState, action) => {
     let updated = Object.assign({}, state)
 
     switch(action.type){                             // switch statment based on action.type
         case constants.USER_LOGGEDIN:                // if constant.USER_LOGGEDIN
             updated['loggedIn'] = true               // set logged in to true
             updated['username'] = action.username    // set the user name to the action.username
-            return updated                           // return 'updated' objected
+            return updated                       // return 'updated' objected
 
 
         case constants.USER_LOGOUT:                  // if constant.USER_LOGOUT
             updated['loggedIn'] = false              // set logged in to true
             updated['username'] = ''                 // set the user name to the action.username
-            return updated                           // return 'updated' objected
+            return updated                       // return 'updated' objected
 
-        default:                                    // Default is to just return the state for now
+        default:                                     // Default is to just return the state for now
             return state
 
     }
 
 }
+
+export default authReducer
